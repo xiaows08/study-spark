@@ -6,8 +6,11 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.ReferenceCountUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.nio.charset.Charset;
 
 /**
  * 1. NioEventLoopGroup is a multithreaded event loop that handles I/O operation. Netty provides various EventLoopGroup
@@ -58,8 +61,14 @@ public class DiscardServer {
 							ch.pipeline().addLast(new ChannelInboundHandlerAdapter() {
 								@Override
 								public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-									// super.channelRead(ctx, msg);
-									((ByteBuf) msg).release();
+									ByteBuf in = (ByteBuf) msg;
+									try {
+										System.out.println(in.toString(Charset.defaultCharset()));
+										ctx.writeAndFlush("hello");
+									} finally {
+										// ((ByteBuf) msg).release();
+										ReferenceCountUtil.release(msg);
+									}
 								}
 
 								@Override

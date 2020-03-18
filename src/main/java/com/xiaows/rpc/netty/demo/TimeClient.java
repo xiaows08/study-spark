@@ -16,6 +16,7 @@ import java.util.Date;
  * @version: v1.0
  */
 public class TimeClient {
+
 	public static void main(String[] args) throws Exception {
 		String host = "localhost";
 		int port = 8080;
@@ -36,7 +37,7 @@ public class TimeClient {
 							try {
 								long currentTimeMillis = (m.readUnsignedInt() - 2208988800L) * 1000L;
 								System.out.println(new Date(currentTimeMillis));
-								ctx.close();
+								// ctx.close();
 							} finally {
 								m.release();
 							}
