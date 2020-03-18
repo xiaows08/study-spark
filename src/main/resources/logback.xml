@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <property name="console-pattern" value="%date{yyyy-MM-dd HH:mm:ss} %green(%-5level) [ %-10thread ] %red(%-40(%logger{40}:%line)) : %msg%n"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${console-pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.pac4j.core.profile.ProfileHelper" level="WARN"/>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+    </root>
+</Configuration>
