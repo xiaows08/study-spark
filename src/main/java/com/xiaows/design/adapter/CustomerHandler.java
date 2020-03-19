@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * @version: v1.0
  */
 @Slf4j
-public class CustomerHandler extends BaseHandler {
+public class CustomerHandler extends BaseHandlerAdapter {
 
 	@Override
 	public void onStart() {
